@@ -39,6 +39,7 @@ function Chat() {
                         </div>
                 </nav>
                 {/* end navigation ends here */}
+                {/* CHAT LAYOUT */}
                 <div className='flex-grow w-full max-w-7xl mx-auto lg:flex'>
                     <div className="flex-1 min-w-0 bg-white xl:flex">
                         <div className="border-b border-gray-200 xl:border-b-0 xl:flex-shink-0 xl:w-64 xl:border-r xl:border-gray-200 bg-gray-50">
@@ -133,6 +134,28 @@ function Chat() {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        {/* CONTENT */}
+                        <div className="flex-1 p:2 sm:pb-6 justify-between  flex-col h-screen hidden xl:flex">
+                                <div className='flex sm:items-center justify-between py-3 border-b border-gray-200 p-3'>
+                                    <div className='flex items-center space-x-4'>
+                                        <img 
+                                            src={profile}
+                                            className='w-10 sm:w-12 h-10 sm:h-12 rounded-full cursor pointer'
+                                        />
+
+                                        <div className='flex flex-col loading-tight'>
+                                            <div className='text-1xl mt-1 flex items-center'>
+                                                <span className='text-gray-700 mr-3'>Ben Shako</span>
+                                                <span className='text-green-500'>
+                                                    <svg width={10} height={10}>
+                                                        <circle cx={5} cy={5} r={5} fill="currentColor" />
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </div>
