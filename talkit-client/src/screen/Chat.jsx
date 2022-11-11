@@ -168,11 +168,23 @@ function Chat() {
                                 </div>
                                 {/* messages */}
                                 <div id='messages' className="flex felx-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
+                                   {/* first message */}
                                     <div className='chat-message'>
                                         <div className='flex items-center'>
-                                            <div className='flex flex-coll space-y-2 text-xs mx-w-'></div>
+                                            <div className='flex flex-coll space-y-2 text-xs max-w-xs mx-2 order-2 items-start'>
+                                                <div>
+                                                    <span className='px-4 py-2 rounded-lg rounded-bl-none bg-gray-200 text-gray-600'>
+                                                            🔶 lorem ipsum 
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <img 
+                                                className='h-6 w-6 rounded-full order-1'
+                                                src={profile}
+                                            />
                                         </div>
                                     </div>
+                                  
                                 </div>
                         </div>
                     </div>
