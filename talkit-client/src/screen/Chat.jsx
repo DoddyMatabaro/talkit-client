@@ -27,7 +27,8 @@ function Chat() {
                                                             <img 
                                                                 className='h-8 w-8 rounded-full'
                                                                 src={profile}
-                                                                />
+                                                                alt="profile"
+                                                            />
                                                         </button>
                                                 </div>
                                                 
@@ -37,6 +38,32 @@ function Chat() {
                                 </div>
                         </div>
                 </nav>
+                {/* end navigation ends here */}
+                <div className='flex-grow w-full max-w-7xl mx-auto lg:flex'>
+                    <div className="flex-1 min-w-0 bg-white xl:flex">
+                        <div className="border-b border-gray-200 xl:border-b-0 xl:flex-shink-0 xl:w-64 xl:border-r xl:border-gray-200 bg-gray-50">
+                            <div className='h-full pl-4 pr-2 py-6 sm:pl-6 lg:pl-8 xl:pl-0'>
+                                <div className='h-full relative'>
+                                    <div className='relative rounded-lg px-3 py-2 flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2'>
+                                        <div className='flex-shink-0'>
+                                            <img 
+                                                src={profile}
+                                                className='h-12 w-12 object-cover rounded-full'
+                                            />
+                                        </div>
+                                        <div className='flex-1 min-w-0'>
+                                            <a href='#' className='focus:outline-none'>
+                                                <span className="absolute inset-0"/>
+                                                <p className='text-sm font-bold text-red-600'>Benjamin Kinyamba</p>
+                                                <p className='text-sm  text-gray-500 truncate'>Web Develop</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
