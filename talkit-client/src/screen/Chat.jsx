@@ -1,5 +1,6 @@
 import React from 'react'
 import profile from '../assets/images/profile.jpg';
+import { FaBeer, FaHeart, FaSearch } from 'react-icons/fa';
 
 function Chat() {
   return (
@@ -153,6 +154,23 @@ function Chat() {
                                                     </svg>
                                                 </span>
                                             </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-center space-x-2">
+                                        <button className='inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none'>
+                                            <FaSearch/>
+                                        </button>
+                                        <button className='inline-flex items-center justify-center rounded-full h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none'>
+                                            <FaHeart/>
+                                        </button>
+                                    </div>
+                                </div>
+                                {/* messages */}
+                                <div id='messages' className="flex felx-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
+                                    <div className='chat-message'>
+                                        <div className='flex items-center'>
+                                            <div className='flex flex-coll space-y-2 text-xs mx-w-'></div>
                                         </div>
                                     </div>
                                 </div>
