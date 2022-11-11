@@ -1,6 +1,6 @@
 import React from 'react'
 import profile from '../assets/images/profile.jpg';
-import { FaBeer, FaHeart, FaSearch } from 'react-icons/fa';
+import { FaBeer, FaHeart, FaMicrophone, FaSearch } from 'react-icons/fa';
 
 function Chat() {
   return (
@@ -231,6 +231,64 @@ function Chat() {
                                                 className='h-6 w-6 rounded-full order-1'
                                                 src={profile}
                                             />
+                                        </div>
+                                    </div>
+
+                                 </div>
+                                 {/* messages box end */}
+
+                                 <div className="border-t-2 border-gray-200 px-4 pt-4  mb-16">
+                                    <div className="relative flex">
+                                            <span className="absolute inset-y-0 flex items-center">
+                                                <button className='inline-flex items-center items-middle rounded-full h-12 w-12 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300'>
+                                                    <FaMicrophone className=""/>
+                                                </button>
+                                            </span>
+                                            <input
+                                                placeholder="Ecris ton message ici..." 
+                                                className="focus:ring-red-500 focus:border-red-500 w-full focus:placeholder-gray-400 text-gray-600 placeholder-gray-300 pl-12 bg-gray-100 rounded-full py-3 border-gray-200"/> 
+                                    </div>
+                                </div>
+
+                                <div className="bg-gray-50 pr-4 sm:pr-6 lg:pr-8 lg:flex-shink-0 lg:border-l lg:border-gray-200 xl:pr-0 hidden xl:block">
+                                    <div className="h-full pl-6 py-6 lg:w-80">
+                                        <div className="h-full relative">
+                                            <div className="m-auto text-center mb-10">
+                                                <img 
+                                                    src={profile}
+                                                    className="w-36 h-36 rounded-full m-auto"  
+                                                />
+                                                <h2 className="m-auto text-2xl mt-2">Ben Kinyamba </h2>
+                                            </div>
+                                            <div className="mb-2">
+                                                <h4>Detail</h4>
+                                            </div>
+                                            <div className="grid grid-cols-4 gap-2">
+                                                <div>
+                                                    <div className="cursor-pointer bg-gray-300 hover:bg-gray-400 h-14 w-full"></div>
+                                                </div>
+                                                <div>
+                                                    <div className="cursor-pointer bg-gray-300 hover:bg-gray-400 h-14 w-full"></div>
+                                                </div>
+                                                <div>
+                                                    <div className="cursor-pointer bg-gray-300 hover:bg-gray-400 h-14 w-full"></div>
+                                                </div>
+                                                <div>
+                                                    <div className="cursor-pointer bg-gray-300 hover:bg-gray-400 h-14 w-full"></div>
+                                                </div>
+                                                <div>
+                                                    <div className="cursor-pointer bg-gray-300 hover:bg-gray-400 h-14 w-full"></div>
+                                                </div>
+                                                <div>
+                                                    <div className="cursor-pointer bg-gray-300 hover:bg-gray-400 h-14 w-full"></div>
+                                                </div>
+                                                <div>
+                                                    <div className="cursor-pointer bg-gray-300 hover:bg-gray-400 h-14 w-full"></div>
+                                                </div>
+                                                <div>
+                                                    <div className="cursor-pointer bg-gray-300 hover:bg-gray-400 h-14 w-full"></div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
