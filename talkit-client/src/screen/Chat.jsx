@@ -43,8 +43,8 @@ function Chat() {
                     <div className="flex-1 min-w-0 bg-white xl:flex">
                         <div className="border-b border-gray-200 xl:border-b-0 xl:flex-shink-0 xl:w-64 xl:border-r xl:border-gray-200 bg-gray-50">
                             <div className='h-full pl-4 pr-2 py-6 sm:pl-6 lg:pl-8 xl:pl-0'>
-                                <div className='h-full relative'>
-                                    <div className='relative rounded-lg px-3 py-2 flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2'>
+                                <div className='h-full relative '>
+                                    <div className='relative rounded-lg px-3 py-2 mb-6 flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2'>
                                         <div className='flex-shink-0'>
                                             <img 
                                                 src={profile}
@@ -60,7 +60,7 @@ function Chat() {
                                         </div>
                                     </div>
 
-                                    <div className='mb-4'>
+                                    <div className='mb-4 flex flex-col gap-4'>
                                         <div className="relative">
                                             <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
                                                 🤬 
@@ -71,6 +71,7 @@ function Chat() {
                                             </div>
                                         </div>
                                         {/* search box end */}
+                                        {/* user 1 */}
                                          <div className='relative rounded-lg px-2 py-2 flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 mb-3 hover:bg-gray-200'>
                                                 <div className='flex-shink-8'>
                                                     <img 
@@ -78,7 +79,57 @@ function Chat() {
                                                         src={profile}
                                                     />
                                                 </div>
+                                                <div className='flex-1 min-w-0'>
+                                                    <a href='#' className="focus:outline-none">
+                                                        <div className="flex items-center justify-between">
+                                                            <p className='text-sm font-bold text-red-600'>
+                                                                Doddy Matabaro
+                                                            </p>
+                                                            <div className='text-gray-400 text-xs'>
+                                                                12:35 AM
+                                                            </div>
+                                                        </div>
+                                                        <div className="flex items-center justify-between">
+                                                            <p className='text-sm text-gray-500 truncate'>Hi</p>
+                                                            <div className='text-white text-xs bg-red-400 rounded-full px-1 py-0'>
+                                                                2
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
                                          </div>
+
+                                         {/* user 1 end */}
+
+                                            {/* user 2 */}
+                                            <div className='relative rounded-lg px-2 py-2 flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 mb-3 hover:bg-gray-200'>
+                                                <div className='flex-shink-8'>
+                                                    <img 
+                                                        className='h-10 w-10 rounded-full'
+                                                        src={profile}
+                                                    />
+                                                </div>
+                                                <div className='flex-1 min-w-0'>
+                                                    <a href='#' className="focus:outline-none">
+                                                        <div className="flex items-center justify-between">
+                                                            <p className='text-sm font-bold text-red-600'>
+                                                                Doddy Matabaro
+                                                            </p>
+                                                            <div className='text-gray-400 text-xs'>
+                                                                12:35 AM
+                                                            </div>
+                                                        </div>
+                                                        <div className="flex items-center justify-between">
+                                                            <p className='text-sm text-gray-500 truncate'>Hi</p>
+                                                            <div className='text-white text-xs bg-red-400 rounded-full px-1 py-0'>
+                                                                2
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                         </div>
+
+                                         {/* user 2 end */}
                                     </div>
                                 </div>
                             </div>
