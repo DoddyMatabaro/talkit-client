@@ -1,6 +1,44 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import hero from '../assets/images/hero.jpg';
+import { ToastContainer, toast } from "react-toastify"
+import { Link, useNavigate } from "react-router-dom";
+import { signinRoute } from '../utils/routesAPI';
+
 function Login() {
+    const navigate = useNavigate();
+
+    const [values, setValues] = useState[{
+      username: "",
+      password: ""
+    }]
+
+    const toastOptions = {
+      position: 'bottom-right',
+      autoClose: 8000,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "dark"
+    };
+
+    useEffect(() => {
+      if(localStorage.getItem('user')) {
+        navigate('/');
+      }
+    }, );
+    
+    const formValidation = () =>{
+      const {password, username} = values;
+      if(password ===  ""){
+        toast.error("Password required!", toastOptions);
+        return false;
+      } else if(username.length === ""){
+        toast.error("Username required", toastOptions);
+        return false;
+      } 
+      return true;
+      }
+
+
   return (
     <div className='m-0 p-0 flex flex-row gap-0 w-screen h-screen'>
         <section className='w-[65%]'>

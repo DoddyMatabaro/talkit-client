@@ -1,15 +1,23 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import {
+  BrowserRouter,
+  Route,
+  Routes
+} from "react-router-dom";
+
 import Chat from './screen/Chat'
 import Login from './screen/Login'
 import Signup from './screen/Signup'
 
 function App() {
   return (
-    <div className="">
-        {/* <Login/> */}
-        {/* <Signup/> */}
-        <Chat/>
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route path='/signup' element={ <Signup /> }/>
+      <Route path='/login' element={ <Login /> }/>
+      <Route path='/' element={ <Chat/> }/>
+    </Routes>
+    </BrowserRouter>
   )
 }
 
