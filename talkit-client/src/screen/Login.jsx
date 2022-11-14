@@ -38,6 +38,35 @@ function Login() {
       return true;
       }
 
+            
+    const handleSubmit  = async (e)=>{
+      e.preventDefault();
+      
+      if( handleValidation()){
+          const {password,  username} = values;
+
+            fetch(url,{
+              method: 'POST',
+              body: JSON.stringify({
+                username,
+                password
+            })
+              headers:{
+                'Content-Type': 'application/json',
+              },
+            })
+            .then(response=>response.json())
+            .then(result =>{
+              if(result.success === false){
+                toast.error(result.message, toastOptions);
+              } else {
+                localStorage.setItem('user', JSON.stringify(result.user));
+              }
+              navigate("/");
+            })
+            .catch(err=>console.log(err));
+        };
+    }
 
   return (
     <div className='m-0 p-0 flex flex-row gap-0 w-screen h-screen'>
