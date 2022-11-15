@@ -5,9 +5,9 @@ import {
   Routes
 } from "react-router-dom";
 
-import Chat from './screen/Chat'
-import Login from './screen/Login'
-import Signup from './screen/Signup'
+import Chat from './screens/Chat'
+import Login from './screens/Login'
+import Signup from './screens/Signup'
 
 function App() {
   return (

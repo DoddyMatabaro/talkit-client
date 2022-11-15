@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import hero from '../assets/images/img3.jpg';
 import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 
 
@@ -10,6 +9,13 @@ function Signup() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const toastOptions = {
+    position: 'bottom-right',
+    autoClose: 8000,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "dark"
+  };
 
   async function handleFormSubmit(e) {
     e.preventDefault();
@@ -17,54 +23,30 @@ function Signup() {
       if(password !== confirmPassword){
         return toast.error('Password do not match');
       }else{
-        const url='http://localhost:9000/api/v1/signup';
+        const url='http://localhost:9000/api/auth/signup';
         const options = {
           method: 'POST',
           headers:{
               'Accept': 'application/json',
               'Content-Type': 'application/json',
-              'Origin': ''
             },
           body: JSON.stringify({
             username: username, 
             password: password
           })
         };
-        const response = await fetch(url, options);
-        const result = await response.json();
-
-        // const resolveWithSomeData = new Promise(resolve => fetch(url, options)=> resolve("world"), 3000));
-          toast.promise(
-              result,
-              {
-                pending: {
-                  render(){
-                    return "I'm loading"
-                  },
-                  // icon: false,
-                },
-                success: {
-                  render({data}){
-                    return `Hello ${data}`
-                  },
-                  // // other options
-                  // icon: "🟢",
-                },
-                error: {
-                  render({data}){
-                    // When the promise reject, data will contains the error
-                    return <MyErrorComponent message={data} />
-                  }
-                }
-              }
-          )
-          // resolveWithSomeData();
-        // fetch(url,options)
-        //   .then(response=>response.json())
-        //   .then(result =>{
-        //     console.log(result);
-        //   })
-        //   .catch(err=>console.log(err));
+        
+        fetch(url,options)
+          .then(response=>response.json())
+          .then(result =>{
+            if(!result){
+              toast.error(result.message, toastOptions);
+            }else{
+              toast.done(result.message, toastOptions);
+            }
+            console.log(result);
+          })
+          .catch(err=>toast.error(err, toastOptions));
       }
   }
 
@@ -114,12 +96,12 @@ function Signup() {
                     className='text-white bg-black p-2 mb-5 rounded-md'
                 >Sign Up</button>
                 <p className='text-gray-400 text-center '>Already have a account? 
-                    {/* <Link 
+                    <Link 
                         to="/login" 
                         className='text-black'
                     >
                         Login
-                    </Link> */}
+                    </Link>
                 </p>
             </form>
             <div className='h-1 bg-black w-[40%] self-center'></div>
