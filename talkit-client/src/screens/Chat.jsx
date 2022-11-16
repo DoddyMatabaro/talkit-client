@@ -1,6 +1,6 @@
 import React from 'react'
 import profile from '../assets/images/profile.jpg';
-import { FaBeer, FaHeart, FaMicrophone, FaSearch } from 'react-icons/fa';
+import { FaBeer,  FaMicrophone } from 'react-icons/fa';
 import { GlobalContext } from '../utils/context'
 import { reducerCases } from '../utils/Constants';
 import Header from '../components/Header';
@@ -17,34 +17,33 @@ import { toast, ToastContainer } from 'react-toastify';
 import { toastOptions } from '../utils/accessory';
 
 function Chat() {
-    const[{ loading, current_user, token}, dispatch] = GlobalContext();
+    const[{ loading,users, current_user, token}, dispatch] = GlobalContext();
     const navigate = useNavigate();
+
 
     useEffect(() => {
         if(localStorage.getItem('user') && localStorage.getItem('token')) {
-            // let value = ;
             dispatch({ type: reducerCases.SET_CURRENT_USER, value:JSON.parse(localStorage.getItem('user'))});
             dispatch({ type: reducerCases.SET_TOKEN, value:JSON.parse(localStorage.getItem('token'))});
+            // if (current_user !== null && current_user !== undefined) {
+            //     try{
+            //         fetch(usersRoute+current_user?._id,{
+            //             method: 'get'
+            //         })
+            //         .then(response=>response.json())
+            //         .then((result)=>{
+            //             console.log(result.users[0].username);
+            //             dispatch({ type: reducerCases.SET_USERS, value: result.users})
+            //         })
+            //     }catch(err){
+            //         toast.error(err, toastOptions);
+            //         console.log("erreur " + err);
+            //     }
+            // } 
         }else{
             navigate('/login');
         }
       }, []);
-    
-      useEffect(()=>{
-            try{
-                fetch(usersRoute+current_user.id,{
-                    method: 'get'
-                })
-                then(response=>response.json())
-                then((result)=>{
-                    dispatch({ type: reducerCases.SET_USERS, value: result.users})
-                })
-            }catch(err){
-                toast.error(err, toastOptions);
-            }
-      },[current_user])
-
-      console.log(current_user);
   return (
     <div>
         { current_user !== null ? (
@@ -68,6 +67,7 @@ function Chat() {
                                 </div>
                             </div>
                         </div>
+
                         {/* CONTENT */}
                         <div className="flex-1 p:2 sm:pb-6 justify-between  flex-col h-screen hidden xl:flex">
                                 <TopChat/>

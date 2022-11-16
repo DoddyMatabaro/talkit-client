@@ -4,8 +4,6 @@ import { GlobalContext } from '../utils/context';
 
 function CurrentUser() {
     const [{current_user}, dispatch] = GlobalContext();
-
-    console.log("current king"+current_user.username);
   return (
              <div className='relative rounded-lg px-3 py-2 mb-6 flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2'>
                     <div className='flex-shink-0'>

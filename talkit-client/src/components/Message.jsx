@@ -2,6 +2,7 @@ import React from 'react'
 import profile from '../assets/images/profile.jpg';
 
 const Message = () => {
+
   return (
     <div className='chat-message'>
         <div className='flex items-center'>
