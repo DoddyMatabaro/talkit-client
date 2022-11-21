@@ -14,39 +14,28 @@ import { useNavigate } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton'
 import { usersRoute } from '../utils/routesAPI';
 import { toast, ToastContainer } from 'react-toastify';
-import { toastOptions } from '../utils/accessory';
+import { getAllMessages, getConversation, toastOptions } from '../utils/accessory';
+import { Vortex } from 'react-loader-spinner';
 
 function Chat() {
-    const[{ loading,users, current_user, token}, dispatch] = GlobalContext();
+    const[{ loader,users,selected_user, current_user, token}, dispatch] = GlobalContext();
     const navigate = useNavigate();
 
-
     useEffect(() => {
-        if(localStorage.getItem('user') && localStorage.getItem('token')) {
-            dispatch({ type: reducerCases.SET_CURRENT_USER, value:JSON.parse(localStorage.getItem('user'))});
-            dispatch({ type: reducerCases.SET_TOKEN, value:JSON.parse(localStorage.getItem('token'))});
-            // if (current_user !== null && current_user !== undefined) {
-            //     try{
-            //         fetch(usersRoute+current_user?._id,{
-            //             method: 'get'
-            //         })
-            //         .then(response=>response.json())
-            //         .then((result)=>{
-            //             console.log(result.users[0].username);
-            //             dispatch({ type: reducerCases.SET_USERS, value: result.users})
-            //         })
-            //     }catch(err){
-            //         toast.error(err, toastOptions);
-            //         console.log("erreur " + err);
-            //     }
-            // } 
-        }else{
-            navigate('/login');
+        if(current_user !== null ) {
+            getAllMessages(current_user._id, dispatch);
         }
       }, []);
-  return (
+
+      useEffect(()=>{
+        getConversation(selected_user, current_user._id);
+      },[selected_user])   
+      const usersClasses = `border-b border-gray-200 xl:border-b-0 xl:flex-shink-0 xl:w-64 xl:border-r xl:border-gray-200 bg-gray-50 ${selected_user !== null? "hidden" : "block"}`
+      const chatClasses = `flex-1 p:2 sm:pb-6 justify-between  flex-col h-screen  xl:flex ${selected_user !== null? "flex" : "hidden"}`
+      console.log(current_user._id);
+return (
     <div>
-        { current_user !== null ? (
+        { token !== null || current_user !==null ? (
         <div>
             <div className='relative min-h-screen flex flex-col bg-gray-50'>
                 {/* nav */}
@@ -55,21 +44,22 @@ function Chat() {
                 {/* CHAT LAYOUT */}
                 <div className='flex-grow w-full max-w-7xl mx-auto lg:flex'>
                     <div className="flex-1 min-w-0 bg-white xl:flex">
-                        <div className="border-b border-gray-200 xl:border-b-0 xl:flex-shink-0 xl:w-64 xl:border-r xl:border-gray-200 bg-gray-50">
+                        <div className={usersClasses}>
                             <div className='h-full pl-4 pr-2 py-6 sm:pl-6 lg:pl-8 xl:pl-0'>
                                 <div className='h-full relative '>
                                     <CurrentUser/>
                                     <div className='mb-4 flex flex-col gap-4'>
                                         {/* search box end */}
                                         <SearchUser/>
-                                        <User/>
+                                            <User/>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         {/* CONTENT */}
-                        <div className="flex-1 p:2 sm:pb-6 justify-between  flex-col h-screen hidden xl:flex">
+                        
+                        <div className={chatClasses}>
                                 <TopChat/>
                                 {/* messages */}
                                 <div id='messages' className="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
@@ -188,7 +178,15 @@ function Chat() {
             </div>
         </div>
         ):
-            <Skeleton count={10}/>
+        <Vortex
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="vortex-loading"
+                wrapperStyle={{}}
+                wrapperClass="vortex-wrapper"
+                colors={['red', 'green', 'blue', 'yellow', 'orange', 'purple']}
+            />
         }
     </div>
   )

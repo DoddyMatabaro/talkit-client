@@ -15,13 +15,7 @@ const Login = () =>  {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [processing, setProcessing] = useState(true);
-    
-    useEffect(() => {
-      if (current_user) {
-        navigate("/");
-      }
-    }, [current_user, navigate]);
-  
+
    
     const formValidation = () =>{
       if(password.trim() ===  ""){
@@ -63,8 +57,6 @@ const Login = () =>  {
             .catch(err=>toast.error(err, toastOptions));
         }
     }
-
-    console.log(username);
   return (
     <div className='m-0 p-0 flex flex-row gap-0 w-screen h-screen justify-center bg-gray-200'>
         <section className='w-[25%] flex flex-col justify-center gap-6 p-10 align-middle'>

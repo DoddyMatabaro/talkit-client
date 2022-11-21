@@ -5,4 +5,6 @@ export const reducerCases = {
     SET_TOKEN: "SET_TOKEN",
     SET_MESSAGES: "SET_MESSAGES",
     SET_USERS: "SET_USERS",
+    SET_LOADER: "SET_LOADER",
+    SET_SELECTED_USER: "SET_SELECTED_USER",
 }

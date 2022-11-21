@@ -4,4 +4,5 @@ export const signinRoute = `${host}/api/auth/signin`;
 export const signoutRoute = `${host}/api/auth/signout`;
 export const usersRoute = `${host}/api/auth/users/`;
 export const sendRoute = `${host}/api/message/send`;
-export const messagesRoute = `${host}/api/message/messages`;
+export const messagesRoute = `${host}/api/message/messages/`;
+export const converseRoute = `${host}/api/message/converse`;

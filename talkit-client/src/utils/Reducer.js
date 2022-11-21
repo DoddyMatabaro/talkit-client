@@ -2,11 +2,12 @@ import { reducerCases } from "./Constants";
 
 export const initialState = {
     searchKey:null,
-    loading:true,
-    current_user:null,
-    token:null,
-    messages:null,
+    current_user:localStorage.getItem('user') !== null ? JSON.parse(localStorage.getItem('user')) : null,
+    token:localStorage.getItem('token') !== null? JSON.parse(localStorage.getItem('token')) : null,
+    loader:false,
+    messages:[],
     users:null,
+    selected_user:"null",
  }
 
 const reducer = (state, action)=>{
@@ -16,6 +17,16 @@ const reducer = (state, action)=>{
             ...state,
             searchKey: action.value,
         };
+        case reducerCases.SET_SELECTED_USER:
+        return {
+            ...state,
+            selected_user: action.value,
+        };
+        case reducerCases.SET_LOADER:
+            return {
+                ...state,
+                loader: action.value,
+            };
         case reducerCases.SET_USERS:
             return {
                 ...state,
@@ -30,11 +41,6 @@ const reducer = (state, action)=>{
             return {
                 ...state,
                 current_user: action.value,
-            };
-        case reducerCases.SET_LOADING:
-            return {
-                ...state,
-                loading: action.value,
             };
         case reducerCases.SET_TOKEN:
             return {
