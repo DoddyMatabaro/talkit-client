@@ -2,6 +2,7 @@ import React from 'react'
 import profile from '../assets/images/profile.jpg';
 import { GlobalContext } from '../utils/context';
 
+
 function CurrentUser() {
     const [{current_user}, dispatch] = GlobalContext();
   return (

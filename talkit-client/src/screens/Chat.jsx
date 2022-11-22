@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import profile from '../assets/images/profile.jpg';
 import { FaBeer,  FaMicrophone } from 'react-icons/fa';
+import { BiSend } from 'react-icons/bi';
 import { GlobalContext } from '../utils/context'
 import { reducerCases } from '../utils/Constants';
 import Header from '../components/Header';
@@ -12,27 +13,27 @@ import Message from '../components/Message';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton'
-import { usersRoute } from '../utils/routesAPI';
+import { sendRoute, usersRoute } from '../utils/routesAPI';
 import { toast, ToastContainer } from 'react-toastify';
-import { getAllMessages, getConversation, toastOptions } from '../utils/accessory';
+import { allUsers, getAllMessages, getConversation, getUser, sendMessage, toastOptions } from '../utils/accessory';
 import { Vortex } from 'react-loader-spinner';
 
 function Chat() {
     const[{ loader,users,selected_user, current_user, token}, dispatch] = GlobalContext();
     const navigate = useNavigate();
-
+    const [text, setText] = useState("");
     useEffect(() => {
         if(current_user !== null ) {
-            getAllMessages(current_user._id, dispatch);
+            allUsers(current_user._id, dispatch);
         }
       }, []);
 
       useEffect(()=>{
-        getConversation(selected_user, current_user._id);
+        getConversation("63720b458d818269b4dbe268", "63720b6a8d818269b4dbe26d" , dispatch);
       },[selected_user])   
       const usersClasses = `border-b border-gray-200 xl:border-b-0 xl:flex-shink-0 xl:w-64 xl:border-r xl:border-gray-200 bg-gray-50 ${selected_user !== null? "hidden" : "block"}`
       const chatClasses = `flex-1 p:2 sm:pb-6 justify-between  flex-col h-screen  xl:flex ${selected_user !== null? "flex" : "hidden"}`
-      console.log(current_user._id);
+      console.log(users);
 return (
     <div>
         { token !== null || current_user !==null ? (
@@ -125,8 +126,21 @@ return (
                                                 </button>
                                             </span>
                                             <input
+                                                onChange={(e)=>setText(e.target.value)}
                                                 placeholder="Ecris ton message ici..." 
                                                 className="focus:ring-red-500 focus:border-red-500 w-full focus:placeholder-gray-400 text-gray-600 placeholder-gray-300 pl-12 bg-gray-100 rounded-full py-3 border-gray-200"/> 
+                                            
+                                            <span className="inset-y-0 flex items-center">
+                                                <button 
+                                                    onClick={(e)=>{
+                                                        e.preventDefault();
+
+                                                        sendMessage(current_user._id, selected_user._id, text);
+                                                    }}
+                                                    className='inline-flex items-center items-middle p-5 rounded-full h-14 w-14 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300'>
+                                                    <BiSend />
+                                                </button>
+                                            </span>
                                     </div>
                                 </div>
 

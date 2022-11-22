@@ -1,6 +1,6 @@
 import { reducerCases } from "./Constants";
 import { GlobalContext } from "./context";
-import { converseRoute, messagesRoute, sendRoute } from "./routesAPI";
+import { converseRoute, messagesRoute, sendRoute, usersRoute } from "./routesAPI";
 import { toast, ToastContainer } from 'react-toastify';
 import { trackPromise } from "react-promise-tracker";
 
@@ -66,13 +66,50 @@ export const getConversation = (id_from, id_to)=>{
                 "Content-Type" : "application/x-www-form-urlencoded"
             },
             body:{
-                from: id_from,
-                to: id_to
+                from:id_from,
+                to:id_to
             }
         })
         .then(response=>response.json())
         .then((result)=>{
             console.log(result);
+        })
+    }catch(err){
+        toast.error(err, toastOptions);
+        console.log("erreur " + err);
+    }
+}
+
+export const getUser = (id)=>{
+    try{
+        fetch(converseRoute+id,{
+            method: 'get',
+            headers:{
+                "Content-Type" : "application/x-www-form-urlencoded"
+            },
+        })
+        .then(response=>response.json())
+        .then((result)=>{
+            console.log(result);
+        })
+    }catch(err){
+        toast.error(err, toastOptions);
+        console.log("erreur " + err);
+    }
+}
+
+export const allUsers = (id, setUsers)=>{
+    try{
+        fetch(usersRoute+id,{
+            method: 'get',
+            headers:{
+                "Content-Type" : "application/x-www-form-urlencoded"
+            },
+        })
+        .then(response=>response.json())
+        .then((result)=>{
+            // console.log(result);
+            setUsers({type: reducerCases.SET_USERS, value:result.users})
         })
     }catch(err){
         toast.error(err, toastOptions);

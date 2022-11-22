@@ -6,3 +6,4 @@ export const usersRoute = `${host}/api/auth/users/`;
 export const sendRoute = `${host}/api/message/send`;
 export const messagesRoute = `${host}/api/message/messages/`;
 export const converseRoute = `${host}/api/message/converse`;
+export const userRoute = `${host}/api/auth/user/`;

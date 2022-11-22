@@ -7,7 +7,8 @@ export const initialState = {
     loader:false,
     messages:[],
     users:null,
-    selected_user:"null",
+    conversation:null,
+    selected_user:null,
  }
 
 const reducer = (state, action)=>{
@@ -17,6 +18,11 @@ const reducer = (state, action)=>{
             ...state,
             searchKey: action.value,
         };
+        case reducerCases.SET_USERS:
+            return {
+                ...state,
+                users: action.value,
+            };
         case reducerCases.SET_SELECTED_USER:
         return {
             ...state,
@@ -38,6 +44,11 @@ const reducer = (state, action)=>{
             messages: action.value,
         };
         case reducerCases.SET_CURRENT_USER:
+            return {
+                ...state,
+                current_user: action.value,
+            };
+        case reducerCases.SET_CONVERSSATION:
             return {
                 ...state,
                 current_user: action.value,
