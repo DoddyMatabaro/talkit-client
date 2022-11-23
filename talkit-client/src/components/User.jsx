@@ -7,11 +7,10 @@ import { group } from 'core-js/actual/array/group';
 import { reducerCases } from '../utils/Constants';
 // import { group } from 'core-js/actual/array/group-by-to-map';
 
-const User = () => {
+    const User = () => {
     const [{messages,users, current_user, selected_user}, dispatch] = GlobalContext();
     // const res = messages.group(({ sender }) => sender);
 
-    console.log(selected_user);
     return (
              users?.map(user=>{
                 return(

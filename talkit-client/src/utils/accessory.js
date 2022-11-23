@@ -16,27 +16,26 @@ export const toastOptions = {
     theme: "dark",
 }; 
 
-export const sendMessage = (id_from, id_to, text )=>{
 
+export const sendMessage = (id_from, id_to, text )=>{
     try{
         fetch(sendRoute,{
-            method: 'POST',
+            method: 'post',
             headers:{
-                "Content-Type" : "application/x-www-form-urlencoded"
+                "Content-Type" : "application/json"
             },
-            body:{
-                from: id_from,
-                to: id_to,
-                message: text
-            }
+            body: JSON.stringify({
+                from:id_from,
+                to:id_to,
+                message:text
+            })
         })
-        .then(response=>response.json())
+        .then(response=>response.text())
         .then((result)=>{
-            return result;
+             console.log(result);
         })
     }catch(err){
         toast.error(err, toastOptions);
-        console.log("erreur " + err);
     }
 }
 
@@ -54,29 +53,27 @@ export const getAllMessages = (id, setMessage)=>{
         })
     }catch(err){
         toast.error(err, toastOptions);
-        console.log("erreur " + err);
     }
 }
 
-export const getConversation = (id_from, id_to)=>{
+export const getConversation = (id_from, id_to, setConverse)=>{
     try{
         fetch(converseRoute,{
             method: 'post',
             headers:{
-                "Content-Type" : "application/x-www-form-urlencoded"
+                "Content-Type" : "application/json"
             },
-            body:{
+            body:JSON.stringify({
                 from:id_from,
                 to:id_to
-            }
+            })
         })
         .then(response=>response.json())
         .then((result)=>{
-            console.log(result);
+            setConverse({type: reducerCases.SET_CONVERSATION, value: result})
         })
     }catch(err){
         toast.error(err, toastOptions);
-        console.log("erreur " + err);
     }
 }
 
@@ -94,7 +91,6 @@ export const getUser = (id)=>{
         })
     }catch(err){
         toast.error(err, toastOptions);
-        console.log("erreur " + err);
     }
 }
 
@@ -113,6 +109,5 @@ export const allUsers = (id, setUsers)=>{
         })
     }catch(err){
         toast.error(err, toastOptions);
-        console.log("erreur " + err);
     }
 }

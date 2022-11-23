@@ -22,18 +22,20 @@ function Chat() {
     const[{ loader,users,selected_user, current_user, token}, dispatch] = GlobalContext();
     const navigate = useNavigate();
     const [text, setText] = useState("");
+
     useEffect(() => {
+
         if(current_user !== null ) {
-            allUsers(current_user._id, dispatch);
+            allUsers(current_user?._id, dispatch);
         }
       }, []);
 
       useEffect(()=>{
-        getConversation("63720b458d818269b4dbe268", "63720b6a8d818269b4dbe26d" , dispatch);
+        getConversation(current_user?._id, selected_user?._id , dispatch);
       },[selected_user])   
       const usersClasses = `border-b border-gray-200 xl:border-b-0 xl:flex-shink-0 xl:w-64 xl:border-r xl:border-gray-200 bg-gray-50 ${selected_user !== null? "hidden" : "block"}`
       const chatClasses = `flex-1 p:2 sm:pb-6 justify-between  flex-col h-screen  xl:flex ${selected_user !== null? "flex" : "hidden"}`
-      console.log(users);
+      console.log(localStorage.getItem('user'));
 return (
     <div>
         { token !== null || current_user !==null ? (
@@ -64,58 +66,9 @@ return (
                                 <TopChat/>
                                 {/* messages */}
                                 <div id='messages' className="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
-                                   {/* first message */}
+                                   {/*  message box */}
                                    <Message/>
-                                    {/* second message */}
-                                    <div className='chat-message'>
-                                        <div className='flex items-end justify-end'>
-                                            <div className='flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-end'>
-                                                <div>
-                                                    <span className='px-4 py-2 rounded-lg inline-block rounded-bl-none bg-red-500 text-white'>   
-                                                            🔶 lorem ipsum 2
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <img 
-                                                className='h-6 w-6 rounded-full order-1'
-                                                src={profile}
-                                            />
-                                        </div>
-                                    </div>
-                                    {/* first */}
-                                    <div className='chat-message'>
-                                        <div className='flex items-center'>
-                                            <div className='flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start'>
-                                                <div>
-                                                    <span className='px-4 py-2 rounded-lg rounded-bl-none bg-gray-200 text-gray-600'>
-                                                            🔶 lorem ipsum 
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <img 
-                                                className='h-6 w-6 rounded-full order-1'
-                                                src={profile}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    {/* first */}
-                                    <div className='chat-message'>
-                                        <div className='flex items-center'>
-                                            <div className='flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start'>
-                                                <div>
-                                                    <span className='px-4 py-2 rounded-lg rounded-bl-none bg-gray-200 text-gray-600'>
-                                                            🔶 lorem ipsum 
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <img 
-                                                className='h-6 w-6 rounded-full order-1'
-                                                src={profile}
-                                            />
-                                        </div>
-                                    </div>
-                                 </div>
+                                   </div>
                                  {/* messages box end */}
 
                                  <div className="border-t-2 border-gray-200 px-4 pt-4  mb-16">
@@ -132,7 +85,7 @@ return (
                                             
                                             <span className="inset-y-0 flex items-center">
                                                 <button 
-                                                    onClick={(e)=>{
+                                                    onClick={e=>{
                                                         e.preventDefault();
 
                                                         sendMessage(current_user._id, selected_user._id, text);

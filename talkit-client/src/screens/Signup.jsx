@@ -52,8 +52,8 @@ function Signup() {
 
   return (
     <div className='m-0 p-0 flex flex-row gap-0 w-screen h-screen align-middle justify-center '>
-        <ToastContainer/>
         <section className='sm:max-w-full max-w-4/5 flex flex-col justify-center gap-6 align-middle'>
+        <ToastContainer/>
             <div className='h-1 bg-red-600 w-[40%]  self-center'></div>
           <h1 className='text-center  text-3xl font-bold text-red-600'>Create an account</h1>
           <h5 className='text-center text-gray-400 mb-6 truncate'>Let's go and talk. La famille d'abord</h5>

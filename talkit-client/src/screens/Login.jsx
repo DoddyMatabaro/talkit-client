@@ -59,7 +59,7 @@ const Login = () =>  {
     }
   return (
     <div className='m-0 p-0 flex flex-row gap-0 w-screen h-screen justify-center bg-gray-200'>
-        <section className='w-[25%] flex flex-col justify-center gap-6 p-10 align-middle'>
+        <section className='w-[25%] sm:w-full  flex flex-col justify-center gap-6 p-10 align-middle'>
           <h1 className='text-center  text-3xl font-bold text-red-600'>Sign In</h1>
           <h5 className='text-center text-gray-400 mb-6 truncate'>Get a nother tour to talk with freinds</h5>
             <form method='post' className="flex flex-col gap-8" onSubmit={handleSubmit}>

@@ -48,10 +48,10 @@ const reducer = (state, action)=>{
                 ...state,
                 current_user: action.value,
             };
-        case reducerCases.SET_CONVERSSATION:
+        case reducerCases.SET_CONVERSATION:
             return {
                 ...state,
-                current_user: action.value,
+                conversation: action.value,
             };
         case reducerCases.SET_TOKEN:
             return {
