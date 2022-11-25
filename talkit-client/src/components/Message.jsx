@@ -4,7 +4,6 @@ import { GlobalContext } from '../utils/context';
 
 const Message = () => {
  const [{conversation}, dispatch] = GlobalContext();
-console.log(conversation);
   return (
     conversation?.map(message=>{
         return(

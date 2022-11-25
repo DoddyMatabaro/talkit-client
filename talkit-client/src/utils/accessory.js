@@ -16,7 +16,6 @@ export const toastOptions = {
     theme: "dark",
 }; 
 
-
 export const sendMessage = (id_from, id_to, text )=>{
     try{
         fetch(sendRoute,{

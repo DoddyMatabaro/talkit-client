@@ -1,4 +1,6 @@
 import { reducerCases } from "./Constants";
+import { host } from "./routesAPI";
+import socketClient  from "socket.io-client";
 
 export const initialState = {
     searchKey:null,
@@ -8,6 +10,7 @@ export const initialState = {
     messages:[],
     users:null,
     conversation:null,
+    socket:socketClient(host),
     selected_user:null,
  }
 

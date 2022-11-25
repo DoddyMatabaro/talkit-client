@@ -13,30 +13,48 @@ import Message from '../components/Message';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton'
-import { sendRoute, usersRoute } from '../utils/routesAPI';
+import { host, sendRoute, usersRoute } from '../utils/routesAPI';
 import { toast, ToastContainer } from 'react-toastify';
 import { allUsers, getAllMessages, getConversation, getUser, sendMessage, toastOptions } from '../utils/accessory';
 import { Vortex } from 'react-loader-spinner';
 
 function Chat() {
-    const[{ loader,users,selected_user, current_user, token}, dispatch] = GlobalContext();
+    const[{ loader, messages, conversation, socket,users,selected_user, current_user, token}, dispatch] = GlobalContext();
+    
     const navigate = useNavigate();
     const [text, setText] = useState("");
-
+    // socket
+    socket.on('connection', ()=>{
+        console.log("je suis connecte");
+    });
     useEffect(() => {
-
         if(current_user !== null ) {
             allUsers(current_user?._id, dispatch);
+            getAllMessages(current_user?._id, dispatch);
         }
       }, []);
 
       useEffect(()=>{
         getConversation(current_user?._id, selected_user?._id , dispatch);
-      },[selected_user])   
+      },[selected_user, conversation])  
+        socket.on('sendToAll', (data) => dispatch({type: reducerCases.SET_CONVERSATION, value: [...conversation, data]}));
       const usersClasses = `border-b border-gray-200 xl:border-b-0 xl:flex-shink-0 xl:w-64 xl:border-r xl:border-gray-200 bg-gray-50 ${selected_user !== null? "hidden" : "block"}`
       const chatClasses = `flex-1 p:2 sm:pb-6 justify-between  flex-col h-screen  xl:flex ${selected_user !== null? "flex" : "hidden"}`
-      console.log(localStorage.getItem('user'));
-return (
+
+        const send = e=>{
+            e.preventDefault();
+            if( text.trim()){
+                socket.emit('send', {
+                    from:current_user._id,
+                    to:selected_user._id,
+                    text:text,
+                    socketID: socket.id,
+                });
+            }
+            setText('');
+            // sendMessage(current_user._id, selected_user._id, text);
+        }
+      return (
     <div>
         { token !== null || current_user !==null ? (
         <div>
@@ -79,17 +97,14 @@ return (
                                                 </button>
                                             </span>
                                             <input
+                                                value={text}
                                                 onChange={(e)=>setText(e.target.value)}
                                                 placeholder="Ecris ton message ici..." 
                                                 className="focus:ring-red-500 focus:border-red-500 w-full focus:placeholder-gray-400 text-gray-600 placeholder-gray-300 pl-12 bg-gray-100 rounded-full py-3 border-gray-200"/> 
                                             
                                             <span className="inset-y-0 flex items-center">
                                                 <button 
-                                                    onClick={e=>{
-                                                        e.preventDefault();
-
-                                                        sendMessage(current_user._id, selected_user._id, text);
-                                                    }}
+                                                    onClick={send}
                                                     className='inline-flex items-center items-middle p-5 rounded-full h-14 w-14 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300'>
                                                     <BiSend />
                                                 </button>

@@ -10,7 +10,7 @@ import { reducerCases } from '../utils/Constants';
     const User = () => {
     const [{messages,users, current_user, selected_user}, dispatch] = GlobalContext();
     // const res = messages.group(({ sender }) => sender);
-
+        console.log(messages);
     return (
              users?.map(user=>{
                 return(
