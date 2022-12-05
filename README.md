@@ -30,3 +30,17 @@ Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
   
+ ### Server : EXPRESSJS MONGOOSE 
+  
+  In the directory of the project run 
+  
+  1. `NPM INSTALL` 
+ 
+ Installing dependancies
+ 
+  2. `NPM START` 
+
+Runs the app in the development mode on [http://localhost:9000](http://localhost:9000)
+
+You may also see any lint errors in the console.
+ .....
