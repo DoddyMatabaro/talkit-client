@@ -4,10 +4,10 @@ A enteprise chat web app
   2. [client repository](https://github.com/DoddyMatabaro/chat-app-MERN)
 
 ## Fonctionality
- -. Search other user
- -. Send message text and pictures
- -. Preview the last message 
- -. notify the new message
+ - Search other user
+ - Send message text and pictures
+ - Preview the last message 
+ - notify the new message
  ## Link
  
  **[TALK KIT CHAT ](https://talkit-client.vercel.app)**
